@@ -1,0 +1,15 @@
+# Local research documents
+/docs/
+
+# Keep only the source dataset required to run all notebooks
+/data/*
+!/data/etf_daily_full_coverage_483.parquet
+
+# Fitted models; keep evaluation tables and figures available
+/results/tree_random/*.joblib
+
+# Notebook, Python, and macOS temporary files
+.ipynb_checkpoints/
+__pycache__/
+*.py[cod]
+.DS_Store

@@ -1,0 +1,398 @@
+{
+  "dataset": "original event data",
+  "input_files": [
+    "train",
+    "validation"
+  ],
+  "input_sha256": {
+    "data/events/train.csv": "9789112d365478a6bfd3da6f1c466d73f5076366f7586d752b155da99960c7a5",
+    "data/events/validation.csv": "a47e07a80f2ac67cb450bf9b220864a50d5027ebce6784541e248ec3a58b1522"
+  },
+  "event_date_range": [
+    "2023-01-01",
+    "2025-12-31"
+  ],
+  "seed": 5001,
+  "split": "Y-stratified random 60/20/20",
+  "sample_count": 5627,
+  "features": {
+    "RF_A": [
+      "ret_1",
+      "ret_5",
+      "ret_20",
+      "vol_20",
+      "rsi_14",
+      "macd",
+      "macd_signal",
+      "macd_hist",
+      "log_amount",
+      "log_adv20_calc",
+      "bias_20",
+      "d_T"
+    ],
+    "RF_AB": [
+      "ret_1",
+      "ret_5",
+      "ret_20",
+      "vol_20",
+      "rsi_14",
+      "macd",
+      "macd_signal",
+      "macd_hist",
+      "log_amount",
+      "log_adv20_calc",
+      "bias_20",
+      "d_T",
+      "m",
+      "sigma_eq",
+      "HL"
+    ],
+    "RF_ABC": [
+      "ret_1",
+      "ret_5",
+      "ret_20",
+      "vol_20",
+      "rsi_14",
+      "macd",
+      "macd_signal",
+      "macd_hist",
+      "log_amount",
+      "log_adv20_calc",
+      "bias_20",
+      "d_T",
+      "m",
+      "sigma_eq",
+      "HL",
+      "group_dev",
+      "group_size"
+    ],
+    "XGB_A": [
+      "ret_1",
+      "ret_5",
+      "ret_20",
+      "vol_20",
+      "rsi_14",
+      "macd",
+      "macd_signal",
+      "macd_hist",
+      "log_amount",
+      "log_adv20_calc",
+      "bias_20",
+      "d_T"
+    ],
+    "XGB_AB": [
+      "ret_1",
+      "ret_5",
+      "ret_20",
+      "vol_20",
+      "rsi_14",
+      "macd",
+      "macd_signal",
+      "macd_hist",
+      "log_amount",
+      "log_adv20_calc",
+      "bias_20",
+      "d_T",
+      "m",
+      "sigma_eq",
+      "HL"
+    ],
+    "XGB_ABC": [
+      "ret_1",
+      "ret_5",
+      "ret_20",
+      "vol_20",
+      "rsi_14",
+      "macd",
+      "macd_signal",
+      "macd_hist",
+      "log_amount",
+      "log_adv20_calc",
+      "bias_20",
+      "d_T",
+      "m",
+      "sigma_eq",
+      "HL",
+      "group_dev",
+      "group_size"
+    ]
+  },
+  "activity_transform": "log1p(max(x,0))",
+  "missing": "drop nonfinite A/B; impute C using training medians",
+  "selection": "validation Log Loss, then AUC; no validation refit",
+  "parameter_grids": {
+    "RF": [
+      {
+        "n_estimators": 300,
+        "max_depth": 3,
+        "min_samples_leaf": 5,
+        "max_features": "sqrt"
+      },
+      {
+        "n_estimators": 300,
+        "max_depth": 3,
+        "min_samples_leaf": 5,
+        "max_features": 0.7
+      },
+      {
+        "n_estimators": 300,
+        "max_depth": 3,
+        "min_samples_leaf": 20,
+        "max_features": "sqrt"
+      },
+      {
+        "n_estimators": 300,
+        "max_depth": 3,
+        "min_samples_leaf": 20,
+        "max_features": 0.7
+      },
+      {
+        "n_estimators": 300,
+        "max_depth": 6,
+        "min_samples_leaf": 5,
+        "max_features": "sqrt"
+      },
+      {
+        "n_estimators": 300,
+        "max_depth": 6,
+        "min_samples_leaf": 5,
+        "max_features": 0.7
+      },
+      {
+        "n_estimators": 300,
+        "max_depth": 6,
+        "min_samples_leaf": 20,
+        "max_features": "sqrt"
+      },
+      {
+        "n_estimators": 300,
+        "max_depth": 6,
+        "min_samples_leaf": 20,
+        "max_features": 0.7
+      },
+      {
+        "n_estimators": 300,
+        "max_depth": null,
+        "min_samples_leaf": 5,
+        "max_features": "sqrt"
+      },
+      {
+        "n_estimators": 300,
+        "max_depth": null,
+        "min_samples_leaf": 5,
+        "max_features": 0.7
+      },
+      {
+        "n_estimators": 300,
+        "max_depth": null,
+        "min_samples_leaf": 20,
+        "max_features": "sqrt"
+      },
+      {
+        "n_estimators": 300,
+        "max_depth": null,
+        "min_samples_leaf": 20,
+        "max_features": 0.7
+      }
+    ],
+    "XGB": [
+      {
+        "n_estimators": 100,
+        "max_depth": 2,
+        "learning_rate": 0.03,
+        "min_child_weight": 5
+      },
+      {
+        "n_estimators": 100,
+        "max_depth": 2,
+        "learning_rate": 0.03,
+        "min_child_weight": 10
+      },
+      {
+        "n_estimators": 100,
+        "max_depth": 2,
+        "learning_rate": 0.05,
+        "min_child_weight": 5
+      },
+      {
+        "n_estimators": 100,
+        "max_depth": 2,
+        "learning_rate": 0.05,
+        "min_child_weight": 10
+      },
+      {
+        "n_estimators": 100,
+        "max_depth": 3,
+        "learning_rate": 0.03,
+        "min_child_weight": 5
+      },
+      {
+        "n_estimators": 100,
+        "max_depth": 3,
+        "learning_rate": 0.03,
+        "min_child_weight": 10
+      },
+      {
+        "n_estimators": 100,
+        "max_depth": 3,
+        "learning_rate": 0.05,
+        "min_child_weight": 5
+      },
+      {
+        "n_estimators": 100,
+        "max_depth": 3,
+        "learning_rate": 0.05,
+        "min_child_weight": 10
+      },
+      {
+        "n_estimators": 100,
+        "max_depth": 4,
+        "learning_rate": 0.03,
+        "min_child_weight": 5
+      },
+      {
+        "n_estimators": 100,
+        "max_depth": 4,
+        "learning_rate": 0.03,
+        "min_child_weight": 10
+      },
+      {
+        "n_estimators": 100,
+        "max_depth": 4,
+        "learning_rate": 0.05,
+        "min_child_weight": 5
+      },
+      {
+        "n_estimators": 100,
+        "max_depth": 4,
+        "learning_rate": 0.05,
+        "min_child_weight": 10
+      },
+      {
+        "n_estimators": 300,
+        "max_depth": 2,
+        "learning_rate": 0.03,
+        "min_child_weight": 5
+      },
+      {
+        "n_estimators": 300,
+        "max_depth": 2,
+        "learning_rate": 0.03,
+        "min_child_weight": 10
+      },
+      {
+        "n_estimators": 300,
+        "max_depth": 2,
+        "learning_rate": 0.05,
+        "min_child_weight": 5
+      },
+      {
+        "n_estimators": 300,
+        "max_depth": 2,
+        "learning_rate": 0.05,
+        "min_child_weight": 10
+      },
+      {
+        "n_estimators": 300,
+        "max_depth": 3,
+        "learning_rate": 0.03,
+        "min_child_weight": 5
+      },
+      {
+        "n_estimators": 300,
+        "max_depth": 3,
+        "learning_rate": 0.03,
+        "min_child_weight": 10
+      },
+      {
+        "n_estimators": 300,
+        "max_depth": 3,
+        "learning_rate": 0.05,
+        "min_child_weight": 5
+      },
+      {
+        "n_estimators": 300,
+        "max_depth": 3,
+        "learning_rate": 0.05,
+        "min_child_weight": 10
+      },
+      {
+        "n_estimators": 300,
+        "max_depth": 4,
+        "learning_rate": 0.03,
+        "min_child_weight": 5
+      },
+      {
+        "n_estimators": 300,
+        "max_depth": 4,
+        "learning_rate": 0.03,
+        "min_child_weight": 10
+      },
+      {
+        "n_estimators": 300,
+        "max_depth": 4,
+        "learning_rate": 0.05,
+        "min_child_weight": 5
+      },
+      {
+        "n_estimators": 300,
+        "max_depth": 4,
+        "learning_rate": 0.05,
+        "min_child_weight": 10
+      }
+    ]
+  },
+  "selected_params": {
+    "RF_A": {
+      "n_estimators": 300,
+      "max_depth": null,
+      "min_samples_leaf": 5,
+      "max_features": 0.7
+    },
+    "RF_AB": {
+      "n_estimators": 300,
+      "max_depth": null,
+      "min_samples_leaf": 5,
+      "max_features": 0.7
+    },
+    "RF_ABC": {
+      "n_estimators": 300,
+      "max_depth": null,
+      "min_samples_leaf": 5,
+      "max_features": 0.7
+    },
+    "XGB_A": {
+      "n_estimators": 300,
+      "max_depth": 4,
+      "learning_rate": 0.05,
+      "min_child_weight": 5
+    },
+    "XGB_AB": {
+      "n_estimators": 300,
+      "max_depth": 4,
+      "learning_rate": 0.05,
+      "min_child_weight": 5
+    },
+    "XGB_ABC": {
+      "n_estimators": 300,
+      "max_depth": 4,
+      "learning_rate": 0.05,
+      "min_child_weight": 5
+    }
+  },
+  "threshold": 0.5,
+  "best_validation_model": "RF_ABC",
+  "shap_units": {
+    "RF_ABC": "probability",
+    "XGB_ABC": "log-odds"
+  },
+  "versions": {
+    "shap": "0.49.1",
+    "scikit-learn": "1.9.1",
+    "xgboost": "3.2.0",
+    "numpy": "1.26.4",
+    "pandas": "3.0.5",
+    "matplotlib": "3.11.1",
+    "joblib": "1.6.0"
+  }
+}

@@ -1,0 +1,7 @@
+﻿model,params,validation_log_loss,validation_auc
+RF_ABC,"{""n_estimators"": 300, ""max_depth"": null, ""min_samples_leaf"": 5, ""max_features"": 0.7}",0.4935245705683242,0.847167521979552
+XGB_ABC,"{""n_estimators"": 300, ""max_depth"": 4, ""learning_rate"": 0.05, ""min_child_weight"": 5}",0.5437520742416382,0.78196151755049
+RF_AB,"{""n_estimators"": 300, ""max_depth"": null, ""min_samples_leaf"": 5, ""max_features"": 0.7}",0.5452768557087895,0.7855982548965005
+RF_A,"{""n_estimators"": 300, ""max_depth"": null, ""min_samples_leaf"": 5, ""max_features"": 0.7}",0.5638386732871773,0.7609035817055867
+XGB_AB,"{""n_estimators"": 300, ""max_depth"": 4, ""learning_rate"": 0.05, ""min_child_weight"": 5}",0.5914655923843384,0.7169511079285515
+XGB_A,"{""n_estimators"": 300, ""max_depth"": 4, ""learning_rate"": 0.05, ""min_child_weight"": 5}",0.6014649868011475,0.7071581069074804
